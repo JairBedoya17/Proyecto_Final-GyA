@@ -14,7 +14,7 @@ const {
 // Helpers
 const { isAuthenticated } = require("../helpers/auth");
 
-// New Note
+// Nuevo laboratorio
 router.get("/notes/add", isAuthenticated, renderNoteForm);
 
 router.post("/notes/new-note", isAuthenticated, createNewNote);

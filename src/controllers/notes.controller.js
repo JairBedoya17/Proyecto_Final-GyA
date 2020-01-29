@@ -11,10 +11,10 @@ notesCtrl.createNewNote = async (req, res) => {
   const { title, description } = req.body;
   const errors = [];
   if (!title) {
-    errors.push({ text: "Please Write a Title." });
+    errors.push({ text: "Ingrese un laboratorio." });
   }
   if (!description) {
-    errors.push({ text: "Please Write a Description" });
+    errors.push({ text: "Donde se encuentra ubicado" });
   }
   if (errors.length > 0) {
     res.render("notes/new-note", {
@@ -26,7 +26,7 @@ notesCtrl.createNewNote = async (req, res) => {
     const newNote = new Note({ title, description });
     newNote.user = req.user.id;
     await newNote.save();
-    req.flash("success_msg", "Note Added Successfully");
+    req.flash("success_msg", "Laboratorio añadido correctamente");
     res.redirect("/notes");
   }
 };
@@ -48,13 +48,13 @@ notesCtrl.renderEditForm = async (req, res) => {
 notesCtrl.updateNote = async (req, res) => {
   const { title, description } = req.body;
   await Note.findByIdAndUpdate(req.params.id, { title, description });
-  req.flash("success_msg", "Note Updated Successfully");
+  req.flash("success_msg", "Laboratorio actualizado correctamente");
   res.redirect("/notes");
 };
 
 notesCtrl.deleteNote = async (req, res) => {
   await Note.findByIdAndDelete(req.params.id);
-  req.flash("success_msg", "Note Deleted Successfully");
+  req.flash("success_msg", "Laboratorio eliminado correctamente");
   res.redirect("/notes");
 };
 
